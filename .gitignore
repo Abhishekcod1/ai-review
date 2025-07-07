@@ -1,0 +1,5 @@
+node_modules
+.next
+.env
+*.log
+public/design_review_results.csv
