@@ -7,7 +7,20 @@ export async function POST() {
   const dir = path.join(process.cwd(), 'public', 'input_images');
   const files = await fs.readdir(dir).catch(() => []);
   const rows = [
-    ['image_name','overall_rating','feedback','layout','color','typography','spacing','contrast']
+    [
+      'image_name',
+      'overall',
+      'layout',
+      'visual_hierarchy',
+      'color_contrast',
+      'typography_legibility',
+      'brand_consistency',
+      'creativity_originality',
+      'technical_quality',
+      'accessibility',
+      'clarity_of_message',
+      'feedback',
+    ],
   ];
   let processed = 0;
   for (const file of files) {
@@ -19,12 +32,16 @@ export async function POST() {
         rows.push([
           file,
           result.overall ?? '',
-          result.feedback?.replace(/\n/g, ' ') ?? '',
           result.layout ?? '',
-          result.color ?? '',
-          result.typography ?? '',
-          result.spacing ?? '',
-          result.contrast ?? '',
+          result.visual_hierarchy ?? '',
+          result.color_contrast ?? '',
+          result.typography_legibility ?? '',
+          result.brand_consistency ?? '',
+          result.creativity_originality ?? '',
+          result.technical_quality ?? '',
+          result.accessibility ?? '',
+          result.clarity_of_message ?? '',
+          result.feedback?.replace(/\n/g, ' ') ?? '',
         ]);
         processed++;
       }
